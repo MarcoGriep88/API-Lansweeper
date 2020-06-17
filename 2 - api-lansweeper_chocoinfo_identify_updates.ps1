@@ -1,13 +1,15 @@
 # ==========================================
 # AUTHOR: GRIEP MARCO
 # THIS SCRIPT IS AN CONNECTOR BETWEEN MY TO APIs
-# * API-LANSWEEPER
-# * API-CHOCO-INFO 
+# * API-LANSWEEPER (https://github.com/MarcoGriep88/API-Lansweeper)
+# * API-CHOCO-INFO (https://github.com/MarcoGriep88/API-ChocoRepoInfo)
 #
 # THIS ENABLED YOU THE FUNCTIONALLITY TO CHECK WHAT SOFTWARE
 # IS INSTALLED BY LANSWEEPER AND COULD BE UPGRADED BY A NEWER CHOCOLATEY PACKAGE
 # ==========================================
 
+$apiLS = "http://inventory.bb.int:8080"
+$apiChoco = "http://api.brandmauer.de/choco"
 
 $json_lansweeper = ""
 $json_chocolateyAppInfo = ""
@@ -25,7 +27,7 @@ class UpgradableInfo {
 }
 
 try {
-    $response = Invoke-WebRequest -Uri "https://localhost:44311/api/Values"
+    $response = Invoke-WebRequest -Uri "$($apiLS)/api/Values"
     $json_lansweeper = ConvertFrom-Json $([String]::new($response.Content))
 }
 catch {
@@ -33,9 +35,9 @@ catch {
 }
 
 try {
-    $response = Invoke-WebRequest -Uri "http://localhost:8090/"
+    $response = Invoke-WebRequest -Uri "$($apiChoco)"
     $json_chocolateyAppInfo = ConvertFrom-Json $([String]::new($response.Content)) 
-    Invoke-RestMethod -Method Post -Uri "http://localhost:8090/refreshupgrade"
+    Invoke-RestMethod -Method Post -Uri "$($apiChoco)/refreshupgrade"
 }
 catch {
     [Environment]::Exit(2)
@@ -73,7 +75,7 @@ foreach($lso in $json_lansweeper) {
 
                 $obj = @([UpgradableInfo]@{Hostname=$lso.AssetName;Software=$choco.Name;LocalVersion=$lso.SoftwareVersion;UpgradeVersion=$choco.Version;Weight=$delta})
                 $json = $obj | ConvertTo-Json
-                Invoke-RestMethod -Method Post -Uri "http://localhost:8090/upgrade" -Body $json -ContentType "application/json"
+                Invoke-RestMethod -Method Post -Uri "$($apiChoco)/upgrade" -Body $json -ContentType "application/json"
             }
             break;
         }
