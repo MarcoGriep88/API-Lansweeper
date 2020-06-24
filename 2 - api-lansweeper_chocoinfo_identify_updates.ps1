@@ -35,9 +35,9 @@ catch {
 }
 
 try {
-    $response = Invoke-WebRequest -Uri "$($apiChoco)"
+    $response = Invoke-WebRequest -Uri "$($apiChoco)/"
     $json_chocolateyAppInfo = ConvertFrom-Json $([String]::new($response.Content)) 
-    Invoke-RestMethod -Method Post -Uri "$($apiChoco)/refreshupgrade"
+    #Invoke-RestMethod -Method Post -Uri "$($apiChoco)/refreshupgrade"
 }
 catch {
     [Environment]::Exit(2)
