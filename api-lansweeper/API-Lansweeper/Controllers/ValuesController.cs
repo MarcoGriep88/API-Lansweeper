@@ -56,6 +56,19 @@ namespace API_Lansweeper.Controllers
                             dataEntry.SoftwareVersion = reader.GetString(10);
                             dataEntry.NumberOfCores = reader.GetDecimal(11);
                             dataEntry.NumberOfProcessors = reader.GetDecimal(12);
+
+                            dataEntry.IPAddress = reader.GetString(13);
+                            dataEntry.FQDN = reader.GetString(14);
+                            dataEntry.Processor = reader.GetString(15);
+                            dataEntry.Model = reader.GetString(16);
+                            dataEntry.TotalPhysicalMemory = reader.GetString(17);
+                            dataEntry.EncryptionLevel = reader.GetString(18);
+                            dataEntry.InstallDate = reader.GetDateTime(19);
+                            dataEntry.SerialNumber = reader.GetString(20);
+                            dataEntry.Manufacturer = reader.GetString(22);
+                            dataEntry.LastPatched = reader.GetDateTime(23);
+                            dataEntry.Location = reader.GetString(24);
+
                             data.Add(dataEntry);
                         }
                             

@@ -18,5 +18,22 @@ namespace API_Lansweeper.Models
         public decimal NumberOfCores { get; set; }
         public decimal NumberOfProcessors{ get; set; }
         public string SoftwarePublisher { get; set; }
+
+
+
+
+
+
+        public string IPAddress { get; set; }
+        public string FQDN { get; set; }
+        public string Processor { get; set; }
+        public string Model { get; set; }
+        public string TotalPhysicalMemory { get; set; }
+        public string EncryptionLevel { get; set; }
+        public DateTime InstallDate { get; set; }
+        public string SerialNumber { get; set; }
+        public string Manufacturer { get; set; }
+        public DateTime LastPatched { get; set; }
+        public string Location { get; set; }
     }
 }

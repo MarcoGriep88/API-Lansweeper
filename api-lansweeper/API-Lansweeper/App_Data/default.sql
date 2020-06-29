@@ -1,6 +1,9 @@
 ﻿Select Top 1000000 tblAssets.AssetID,
   tblAssets.Domain,
   tblAssets.AssetName,
+  tblAssets.IPAddress,
+  tblAssets.FQDN,
+  tblAssets.Processor,
   tblAssets.Username,
   Case
     When tblComputersystem.Domainrole > 1 Then 'Server'
@@ -16,7 +19,16 @@
   tSoftware.SoftwarePublisher,
   tSoftware.softwareVersion,
   tblProcessor.NumberOfCores,
-  tblProcessor.NumberOfLogicalProcessors
+  tblProcessor.NumberOfLogicalProcessors,
+  tblComputersystem.Model,
+  tblComputersystem.TotalPhysicalMemory,
+  tblOperatingsystem.EncryptionLevel,
+  tblOperatingsystem.InstallDate,
+  tblOperatingsystem.SerialNumber,
+  tblOperatingsystem.Version,
+  tblAssetCustom.Manufacturer As Manufacturer,
+  tblAssetCustom.LastPatched,
+  tblAssetCustom.Location
 From tblAssets
   Inner Join tblAssetCustom On tblAssets.AssetID = tblAssetCustom.AssetID
   Inner Join tsysAssetTypes On tsysAssetTypes.AssetType = tblAssets.Assettype
