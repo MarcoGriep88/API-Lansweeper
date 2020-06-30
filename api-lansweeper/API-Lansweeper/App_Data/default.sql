@@ -1,9 +1,6 @@
 ﻿Select Top 1000000 tblAssets.AssetID,
   tblAssets.Domain,
   tblAssets.AssetName,
-  tblAssets.IPAddress,
-  tblAssets.FQDN,
-  tblAssets.Processor,
   tblAssets.Username,
   Case
     When tblComputersystem.Domainrole > 1 Then 'Server'
@@ -20,6 +17,9 @@
   tSoftware.softwareVersion,
   tblProcessor.NumberOfCores,
   tblProcessor.NumberOfLogicalProcessors,
+    tblAssets.IPAddress,
+  tblAssets.FQDN,
+  tblAssets.Processor,
   tblComputersystem.Model,
   tblComputersystem.TotalPhysicalMemory,
   tblOperatingsystem.EncryptionLevel,
