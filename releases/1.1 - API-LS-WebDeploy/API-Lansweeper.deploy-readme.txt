@@ -1,0 +1,63 @@
+﻿
+===========================
+Voraussetzungen:
+--------------------------
+Damit dieses Webpaket bereitgestellt werden kann, muss Web Deploy ("msdeploy.exe") auf dem Computer installiert sein, der die CMD-Datei ausführt. Weitere Informationen zum Installieren von Web Deploy finden Sie unter der folgenden URL:
+https://go.microsoft.com/?linkid=9278654
+Diese Batchdatei erfordert, dass die Paketdatei "API-Lansweeper.zip" und optional die Parameterdatei "API-Lansweeper.SetParameters.xml" im gleichen Ordner oder im Zielordner durch die Umgebungsvariable bereitgestellt werden.
+
+===========================
+Verwendung:
+--------------------------
+API-Lansweeper.deploy.cmd [/T|/Y] [/M:Computername] [/U:Benutzername] [/P:Kennwort] [/G:TempAgentVerwenden] [Zusätzliche msdeploy.exe-Kennzeichen...]
+
+
+===========================
+Erforderliche Kennzeichen:
+--------------------------
+/T:
+	Ruft "msdeploy.exe" mit dem Kennzeichen "-whatif" auf, das die Bereitstellung simuliert. Das Paket wird mit diesem Kennzeichen nicht bereitgestellt. Stattdessen wird ein Bericht erstellt, der beschreibt, was bei einer tatsächlichen Bereitstellung des Pakets geschieht.
+/Y:
+	Ruft "msdeploy.exe" ohne das Kennzeichen "-whatif" auf. Das Paket wird auf dem aktuellen Computer oder auf dem Zielserver bereitgestellt. Verwenden Sie "/Y", nachdem Sie die Ausgabe überprüft haben, die durch die Verwendung des Kennzeichens "/T" generiert wurde.
+
+Hinweis: Verwenden Sie "/T" und "/Y" nicht im gleichen Befehl.
+
+===========================
+Optionale Kennzeichen:
+--------------------------
+ Standardmäßig führt dieses Skript die Bereitstellung auf dem aktuellen Computer aus, auf dem dieses Skript mit den aktuellen Benutzeranmeldeinformationen ohne Agent-Dienst aufgerufen wird. Übergeben Sie für das erweiterte Szenario nur den folgenden Wert.
+
+/M:<Zielservername oder Dienst-URL>
+	Wenn dieses Kennzeichen nicht angegeben wird, wird das Paket auf dem Computer installiert, auf dem der Befehl ausgeführt wird. Die Dienst-URL kann das folgenden Format aufweisen:
+		https://<Zielserver>:8172/MSDeploy.axd 
+	Dieses Format erfordert, dass IIS 7 auf dem Zielserver installiert ist und dass der IIS 7-Webverwaltungsdienst (WMSvc) und der Webbereitstellungshandler eingerichtet sind.
+	Die Dienst-URL kann auch das folgende Format aufweisen:
+		http://<Zielserver>/MSDeployAgentService 
+	Dieses Format erfordert Administratorrechte auf dem Zielserver. Außerdem muss der Web Deploy-Remotedienst (MsDepSvc) auf dem Zielserver installiert sein. IIS 7 muss nicht auf dem Zielserver installiert sein.
+
+/U:<Benutzername>
+/P:<Kennwort>
+/G:<True | False>
+	Gibt an, dass das Paket durch Erstellen eines temporären Listeners für den Zielserver bereitgestellt wird. Dies erfordert keine besondere Installation auf dem Zielserver, Sie müssen jedoch Administrator für diesen Server sein. Der Standardwert dieses Kennzeichens ist "False". 
+
+/A:<Standard | NTLM>
+	Gibt den zu verwendenden Authentifizierungstype an. Mögliche Werte sind "NTLM" und "Basic" (Standard). Wenn die wmsvc-Anbietereinstellung angegeben wird, ist der Standardauthentifizierungstyp "Basic". Andernfalls ist der Standardauthentifizierungstyp "NTLM". 
+
+/L 
+	Gibt an, dass das Paket für die lokale IISExpress-Benutzerinstanz bereitgestellt wird.
+
+[Zusätzliche msdeploy.exe-Kennzeichen]
+	Der Befehl "msdeploy.exe" unterstützt zusätzliche Kennzeichen. Sie können diese zusätzlichen Kennzeichen in die Datei "$(ProjectName).Deploy.cmd" aufnehmen, und die Kennzeichen werden dann während der Ausführung an "msdeploy.exe" übergeben.
+	Alternativ können Sie zusätzliche Kennzeichen angeben, indem Sie die Umgebungsvariable "_MsDeployAdditionalFlags" festlegen. Diese Einstellungen werden von dieser Batchdatei verwendet.
+	Hinweis: Jeder Kennzeichenwert, der ein Gleichheitszeichen (=) enthält, muss - wie im folgenden Beispiel gezeigt - in doppelte Anführungszeichen eingeschlossen werden. Auf diese Weise wird die Bereitstellung der im Paket enthaltenen Datenbanken übersprungen:
+		"-skip:objectName=dbFullSql" 
+
+===========================
+Umgebungsspezifische Einstellungen:
+--------------------------
+
+	Bearbeiten Sie zum Anpassen der umgebungsspezifischen Einstellungen für jede Bereitstellungsumgebung (z. B. IIS-Anwendungsname, physischer Pfad und alle Verbindungszeichenfolgen) die Einstellungen in der folgenden Datei: 
+		 "API-Lansweeper.SetParameters.xml"
+===========================
+Weitere Informationen zu diesem Bereitstellungsskript finden Sie unter:	https://go.microsoft.com/fwlink/?LinkID=183544
+
