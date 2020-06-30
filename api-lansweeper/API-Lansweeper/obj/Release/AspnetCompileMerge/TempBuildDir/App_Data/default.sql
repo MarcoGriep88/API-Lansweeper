@@ -16,7 +16,19 @@
   tSoftware.SoftwarePublisher,
   tSoftware.softwareVersion,
   tblProcessor.NumberOfCores,
-  tblProcessor.NumberOfLogicalProcessors
+  tblProcessor.NumberOfLogicalProcessors,
+    tblAssets.IPAddress,
+  tblAssets.FQDN,
+  tblAssets.Processor,
+  tblComputersystem.Model,
+  tblComputersystem.TotalPhysicalMemory,
+  tblOperatingsystem.EncryptionLevel,
+  tblOperatingsystem.InstallDate,
+  tblOperatingsystem.SerialNumber,
+  tblOperatingsystem.Version,
+  tblAssetCustom.Manufacturer As Manufacturer,
+  tblAssetCustom.LastPatched,
+  tblAssetCustom.Location
 From tblAssets
   Inner Join tblAssetCustom On tblAssets.AssetID = tblAssetCustom.AssetID
   Inner Join tsysAssetTypes On tsysAssetTypes.AssetType = tblAssets.Assettype
