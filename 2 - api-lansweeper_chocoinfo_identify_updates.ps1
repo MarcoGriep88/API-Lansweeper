@@ -8,8 +8,35 @@
 # IS INSTALLED BY LANSWEEPER AND COULD BE UPGRADED BY A NEWER CHOCOLATEY PACKAGE
 # ==========================================
 
-$apiLS = "http://inventory.bb.int:8080"
-$apiChoco = "http://api.brandmauer.de/choco"
+param(
+    [string]$lansweeperAPI = "",
+    [string]$chocolateyAPI = "",
+    [string]$errorMode = "exit",
+    [string]$resetMode = "noreset"
+)
+
+$apiLS = $lansweeperAPI
+$apiChoco = $chocolateyAPI
+
+Write-Host "Using $($apiLS) for Lansweeper"
+Write-Host "Using $($apiChoco) for Lansweeper"
+
+$resetDataOnSync = $false
+
+if ($resetMode -eq "reset") {
+    $resetDataOnSync = $true
+}
+
+Write-Host "Reset Mode $($resetDataOnSync)"
+
+$exitOnError = $true
+
+if ($errorMode -eq "keepalive") {
+    $exitOnError = $false
+}
+
+Write-Host "Exit on Error $($exitOnError)"
+
 
 $json_lansweeper = ""
 $json_chocolateyAppInfo = ""
@@ -31,16 +58,19 @@ try {
     $json_lansweeper = ConvertFrom-Json $([String]::new($response.Content))
 }
 catch {
-    [Environment]::Exit(1)
+    if ($exitOnError) { [Environment]::Exit(1) }
 }
 
 try {
     $response = Invoke-WebRequest -Uri "$($apiChoco)/"
     $json_chocolateyAppInfo = ConvertFrom-Json $([String]::new($response.Content)) 
-    #Invoke-RestMethod -Method Post -Uri "$($apiChoco)/refreshupgrade"
+
+    if ($resetDataOnSync) {
+        Invoke-RestMethod -Method Post -Uri "$($apiChoco)/refreshupgrade"
+    }
 }
 catch {
-    [Environment]::Exit(2)
+    if ($exitOnError) { [Environment]::Exit(2) }
 }
 
 foreach($lso in $json_lansweeper) {
