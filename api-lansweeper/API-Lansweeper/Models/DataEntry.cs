@@ -18,12 +18,6 @@ namespace API_Lansweeper.Models
         public decimal NumberOfCores { get; set; }
         public decimal NumberOfProcessors{ get; set; }
         public string SoftwarePublisher { get; set; }
-
-
-
-
-
-
         public string IPAddress { get; set; }
         public string FQDN { get; set; }
         public string Processor { get; set; }
