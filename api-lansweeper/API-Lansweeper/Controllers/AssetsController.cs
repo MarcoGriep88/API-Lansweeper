@@ -176,7 +176,7 @@ namespace API_Lansweeper.Controllers
                             if (!reader.IsDBNull(56))
                                 dataEntry.Printedpages = reader.GetString(56);
                             if (!reader.IsDBNull(57))
-                                dataEntry.Printerstatus = reader.GetString(57);
+                                dataEntry.Printerstatus = reader.GetDecimal(57).ToString();
                             if (!reader.IsDBNull(58))
                                 dataEntry.SSHServer = reader.GetString(58);
                             if (!reader.IsDBNull(59))
