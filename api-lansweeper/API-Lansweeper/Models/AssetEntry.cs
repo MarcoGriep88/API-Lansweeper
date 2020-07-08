@@ -46,17 +46,18 @@ namespace API_Lansweeper.Models
         public string Contact { get; set; }
         public string Domain { get; set; }
         public string Username { get; set; }
+
+        public string Userdomain { get; set; }
         public string Scanserver { get; set; }
         public string OScode { get; set; }
         public string FQDN { get; set; }
         public DateTime Firstseen { get; set; }
         public string Mac { get; set; }
-        public string Uptime { get; set; }
-        public string Memory { get; set; }
+        public decimal Uptime { get; set; }
+        public decimal Memory { get; set; }
         public string NrProcessors { get; set; }
         public string Processor { get; set; }
         public string ServiceVersion { get; set; }
-        public DateTime LastPatched { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
         public string HTTPTitle { get; set; }

@@ -128,57 +128,61 @@ namespace API_Lansweeper.Controllers
                                 dataEntry.Domain = reader.GetString(35);
                             if (!reader.IsDBNull(36))
                                 dataEntry.Username = reader.GetString(36);
-                            if (!reader.IsDBNull(37))
-                                dataEntry.Scanserver = reader.GetString(37);
-                            if (!reader.IsDBNull(38))
-                                dataEntry.OScode = reader.GetString(38);
-                            if (!reader.IsDBNull(39))
-                                dataEntry.FQDN = reader.GetString(39);
-                            if (!reader.IsDBNull(40))
-                                dataEntry.Firstseen = reader.GetDateTime(40);
-                            if (!reader.IsDBNull(41))
-                                dataEntry.Mac = reader.GetString(41);
-                            if (!reader.IsDBNull(42))
-                                dataEntry.Uptime = reader.GetString(42);
-                            if (!reader.IsDBNull(43))
-                                dataEntry.Memory = reader.GetString(43);
-                            if (!reader.IsDBNull(44))
-                                dataEntry.NrProcessors = reader.GetDecimal(44).ToString();
-                            if (!reader.IsDBNull(45))
-                                dataEntry.Processor = reader.GetDecimal(45).ToString();
-                            if (!reader.IsDBNull(46))
-                                dataEntry.LastPatched = reader.GetDateTime(46);
 
-                            if (!reader.IsDBNull(47))
-                                dataEntry.Manufacturer = reader.GetString(47);
+                            if (!reader.IsDBNull(37))
+                                dataEntry.Userdomain = reader.GetString(37);
+
+                            if (!reader.IsDBNull(38))
+                                dataEntry.Scanserver = reader.GetString(38);
+                            if (!reader.IsDBNull(39))
+                                dataEntry.OScode = reader.GetString(39);
+                            if (!reader.IsDBNull(10))
+                                dataEntry.FQDN = reader.GetString(10);
+                            if (!reader.IsDBNull(41))
+                                dataEntry.Firstseen = reader.GetDateTime(41);
+                            if (!reader.IsDBNull(42))
+                                dataEntry.Mac = reader.GetString(42);
+                            if (!reader.IsDBNull(43))
+                                dataEntry.Uptime = reader.GetDecimal(43);
+                            if (!reader.IsDBNull(44))
+                                dataEntry.Memory = reader.GetDecimal(44);
+                            if (!reader.IsDBNull(45))
+                                dataEntry.NrProcessors = reader.GetDecimal(45).ToString();
+                            if (!reader.IsDBNull(46))
+                                dataEntry.Processor = reader.GetString(46);
+                            //if (!reader.IsDBNull(47))
+                            //    dataEntry.LastPatched = reader.GetDateTime(47);
 
                             if (!reader.IsDBNull(48))
-                                dataEntry.Model = reader.GetString(48);
+                                dataEntry.Manufacturer = reader.GetString(48);
 
                             if (!reader.IsDBNull(49))
-                                dataEntry.HTTPTitle = reader.GetString(49);
+                                dataEntry.Model = reader.GetString(49);
 
                             if (!reader.IsDBNull(50))
-                                dataEntry.HttpServer = reader.GetString(50);
+                                dataEntry.HTTPTitle = reader.GetString(50);
 
                             if (!reader.IsDBNull(51))
-                                dataEntry.HttpsServer = reader.GetString(51);
+                                dataEntry.HttpServer = reader.GetString(51);
+
                             if (!reader.IsDBNull(52))
-                                dataEntry.SMTPheader = reader.GetString(52);
+                                dataEntry.HttpsServer = reader.GetString(52);
                             if (!reader.IsDBNull(53))
-                                dataEntry.SnmpOID = reader.GetString(53);
+                                dataEntry.SMTPheader = reader.GetString(53);
                             if (!reader.IsDBNull(54))
-                                dataEntry.FTPheader = reader.GetString(54);
+                                dataEntry.SnmpOID = reader.GetString(54);
                             if (!reader.IsDBNull(55))
-                                dataEntry.Printedpages = reader.GetString(55);
+                                dataEntry.FTPheader = reader.GetString(55);
                             if (!reader.IsDBNull(56))
-                                dataEntry.Printerstatus = reader.GetString(56);
+                                dataEntry.Printedpages = reader.GetString(56);
                             if (!reader.IsDBNull(57))
-                                dataEntry.SSHServer = reader.GetString(57);
+                                dataEntry.Printerstatus = reader.GetString(57);
                             if (!reader.IsDBNull(58))
-                                dataEntry.DNSName = reader.GetString(58);
+                                dataEntry.SSHServer = reader.GetString(58);
                             if (!reader.IsDBNull(59))
-                                dataEntry.SystemSKU = reader.GetString(59);
+                                dataEntry.DNSName = reader.GetString(59);
+                            if (!reader.IsDBNull(60))
+                                dataEntry.SystemSKU = reader.GetString(60);
 
                             data.Add(dataEntry);
                         }
