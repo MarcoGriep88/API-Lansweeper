@@ -15,7 +15,9 @@ After Installation you need to change the Connection String to your Lansweeper D
 Check working Installation by trying to access the Lansweeper JSON Data: http://hostname:port/api/Values
 You should get an JSON Result.
 
-[German Info Page from the Softwaredeveloper](https://www.marcogriep.de/blog/vorstellung-lansweeper-web-api/)
+[German Info Page from the Softwaredeveloper](https://www.marcogriep.de)
+
+[Blog Article about API-Lansweeper](https://www.protoncode.eu/home/presentation-of-api-lansweeper)
 
 ## How to Upgrade existing installation
 Copy the current web.config file to an save location. Unzip the 7-Zip File from API-Lansweeper. Run the cmd File with the Parameter /Y and Administrative Privileges. Check that the web.config File still has the correct connection string to your database. If not, replace the connection string with the connection string of the previous web.config file.
